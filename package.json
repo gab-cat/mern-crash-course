@@ -20,8 +20,12 @@
   },
   "homepage": "https://github.com/mechy88/mern-crash-course#readme",
   "dependencies": {
+    "@chakra-ui/react": "^2.10.7",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "framer-motion": "^12.6.2",
     "mongoose": "^8.13.0"
   },
   "devDependencies": {
