@@ -1,10 +1,13 @@
-import { Button, Container, Flex, HStack, Link, Text } from '@chakra-ui/react'
-import { PlusSquareIcon } from '@chakra-ui/icons'
+import { Button, Container, Flex, HStack, Text, useColorMode } from '@chakra-ui/react'
+import { PlusSquareIcon, SunIcon, MoonIcon } from '@chakra-ui/icons'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+    const { colorMode, toggleColorMode } = useColorMode();
+
   return (
-    <Container maxW={"1140px"} px={4}>
+    <Container maxW={"1140px"} px={4} >
         <Flex
         h={16}
         alignItems={"center"}
@@ -19,7 +22,7 @@ const Navbar = () => {
 				fontWeight={"bold"}
 				textTransform={"uppercase"}
 				textAlign={"center"}
-				bgGradient='linear(to-l, #7928CA, #FF0080)'
+				bgGradient={"linear(to-r, cyan.400, blue.500)"}
 				bgClip={"text"}
             >
                 <Link to={"/"}>Product Store 🛒</Link>
@@ -28,9 +31,13 @@ const Navbar = () => {
             <HStack spacing={2} alignItems={"center"}>
                 <Link to={"/create"}>
                     <Button>
-                        <PlusSquareIcon />
+                        <PlusSquareIcon fontSize={20}/>
                     </Button>
                 </Link>
+                <Button onClick={toggleColorMode}>
+                    {colorMode == "light" ? <MoonIcon /> : <SunIcon />}
+                </Button>
+
             </HStack>
             
             
