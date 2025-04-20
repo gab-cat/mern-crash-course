@@ -5,9 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development nodemon backend/server.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "NODE_ENV=production node backend/server.js"
+    "dev": "cross-env NODE_ENV=development nodemon backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend && npm run clean-out-dir && npm run create-out-dir",
+    "clean-out-dir": "rimraf out",
+    "create-out-dir": "mkdirp out && npm run copy-files",
+    "copy-files": "npm run copy-frontend && npm run copy-backend && npm run copy-config",
+    "copy-frontend": "copyfiles -u 2 \"frontend/dist/**/*\" out",
+    "copy-backend": "copyfiles -f \"backend/*.js\" out && copyfiles -u 1 \"backend/config/**/*\" out && copyfiles -u 1 \"backend/controllers/**/*\" out && copyfiles -u 1 \"backend/models/**/*\" out && copyfiles -u 1 \"backend/routes/**/*\" out",
+    "copy-config": "copyfiles -f .env package.json out",
+    "start": "cross-env NODE_ENV=production node out/server.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +38,8 @@
     "mongoose": "^8.13.0"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.9"
   }
 }
