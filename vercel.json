@@ -5,6 +5,10 @@
   "installCommand": "npm install",
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
       "handle": "filesystem"
     },
     {
