@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development nodemon backend/server.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend && npm run clean-out-dir && npm run create-out-dir",
+    "build": "npm install && npm install --prefix frontend --include=dev && npm run build --prefix frontend && npm run clean-out-dir && npm run create-out-dir",
     "clean-out-dir": "rimraf out",
     "create-out-dir": "mkdirp out && npm run copy-files",
     "copy-files": "npm run copy-frontend && npm run copy-backend && npm run copy-config",
